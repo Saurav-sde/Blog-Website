@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page1</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="editor.css"> -->
+    <link rel="stylesheet" href="blog.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Saurav Kumar</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="./editor.html" id="goToPage2">Create</a></li>
+                <li><a href="./index.html" id="goToPage1">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#post">See Blogs</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+    <div id="subHeader">
+        <h1 class="blog-title">THE BLOG</h1>
+        <hr>
+    </div>
+    <main class="container">
+        <section id="recentBlog">
+            <h2 id="recent-heading">Recent Blogs</h2>
+
+        </section>
+
+        <div class="filter-container">
+            <div class="filter-icon" id="filterIcon">
+                filter
+            </div>
+            <div class="post-filter" id="filterMenu">
+                <span class="close-icon" id="closeIcon">&times;</span>
+                <span class="filter-item active-filter" data-filter="all">All</span>
+                <span class="filter-item" data-filter="Tech">Tech</span>
+                <span class="filter-item" data-filter="Food">Food</span>
+                <span class="filter-item" data-filter="Health">Health</span>
+                <span class="filter-item" data-filter="Travel">Travel</span>
+                <span class="filter-item" data-filter="Finance">Finance</span>
+                <span class="filter-item" data-filter="Nature">Nature</span>
+            </div>
+        </div>
+    
+        
+        <div class="post" id="post">
+    
+        </div>    
+
+    </main>
+
+    <div class="create-blog-section" id="createBlog">
+        <div class="content">
+            <h1>Create Your Blog</h1>
+            <p>Start sharing your ideas with the world. Click below to create your first blog post and make your voice heard!</p>
+            <button id="startYourBlogBtn">Start Your Blog</button>
+        </div>
+        <img src="images/createSection.webp" alt="Create Blog Illustration">
+    </div>
+
+    <section id="about">
+        <div class="about-container">
+          <img src="./images/aboutSection.webp" alt="Profile Picture" class="profile-pic">
+          <div class="about-text">
+            <h2>About Me</h2>
+            <p>
+              Hi, I'm Saurav, a passionate writer and developer with a love for sharing knowledge and experiences.  
+              My blog covers a variety of topics, including web development, programming tips, and personal growth journeys.  
+              With a strong belief in continuous learning, I aim to inspire others by breaking down complex topics into simple, actionable insights.  
+            </p>
+            <p>
+              Beyond writing, I enjoy experimenting with new technologies, contributing to open-source projects, and connecting with like-minded individuals.  
+              Feel free to explore my blog and share your thoughts!
+            </p>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/saurav-kumar-5690a1292/" target="_blank">LinkedIn</a>
+              <a href="https://github.com/Saurav-sde" target="_blank">GitHub</a>
+              <a href="https://www.instagram.com/saurav_2713/" target="_blank">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="sec aboutus">
+                <h2>About us</h2>
+                <p>Welcome to our blog! We are passionate about sharing knowledge, insights, and creative ideas on various topics, from technology and development to lifestyle and personal growth. Our mission is to inspire and inform readers with engaging content that adds value to their everyday lives. Join us on this exciting journey as we explore, learn, and grow together!</p>
+                <ul class="sci">
+                    <li><a href="#"><i class="bx bxl-facebook"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-instagram"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-twitter"></i></a></li>
+                    <li><a href="#"><i class="bx bxl-linkedin"></i></a></li>
+                </ul>
+            </div>
+            <div id="subFooter">
+                <div class="sec quicklinks">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="./index.html">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="./editor.html">Create</a></li>
+                        <li><a href="#postb">See Blogs</a></li>
+                    </ul>
+                </div>
+                <div class="sec contactBx">
+                    <h2>Contact Info</h2>
+                    <ul class="info">
+                        <li>
+                            <span><i class="bx bxs-map"></i></span>
+                            <span>Gandhi Maidan <br>Patna,811105 <br>India</span>
+                        </li>
+                        <li>
+                            <span><i class="bx bx-envelope"></i></span>
+                            <p id="email"><a href="saurav.sde.cs@gmail.com">saurav.sde.cs@gmail.com</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>   
+        </div>
+    </footer>
+
+
+
+    <div id="notes-widget">
+        <div id="notes-header">
+          <span>Notes</span>
+          <button id="toggle-widget">-</button>
+        </div>
+        <div id="notes-body">
+          <div id="notes-list"></div>
+          <textarea id="note-input" placeholder="Write your note..."></textarea>
+          <button id="add-note-btn">Add Note</button>
+        </div>
+    </div>
+      
+
+    <script src="app.js"></script>
+</body>
+</html>
+
+

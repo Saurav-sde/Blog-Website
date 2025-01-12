@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page2</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+    <link rel="stylesheet" href="editorDark.css" id="theme-style">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Saurav Kumar</div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="menu" id="menu">
+                <li><a href="./index.html" id="goToPage1">Home</a></li>
+                <li><a href="./index.html#about" id="about">About</a></li>
+                <li><a href="./index.html#post" id="blogsCard">See Blogs</a></li>
+            </ul>
+        </nav>
+        <hr>
+    </header>
+
+    <div class="editor-container">
+
+        <!-- moon -->
+
+        <div id="toggle-theme-div">
+            <button id="toggle-theme"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+        </div>
+
+        <div class="options">
+            <!-- Text Formats -->
+             <button id="bold" class="option-button format">
+                <i class="fa-solid fa-bold"></i>
+             </button>
+             <button id="italic" class="option-button format">
+                <i class="fa-solid fa-italic"></i>
+             </button>
+             <button id="underline" class="option-button format">
+                <i class="fa-solid fa-underline"></i>
+             </button>
+             <button id="strikethrough" class="option-button format">
+                <i class="fa-solid fa-strikethrough"></i>
+             </button>
+             <button id="superscript" class="option-button script">
+                <i class="fa-solid fa-superscript"></i>
+             </button>
+             <button id="subscript" class="option-button script">
+                <i class="fa-solid fa-subscript"></i>
+             </button>
+
+             <!-- list -->
+              <button id="insertOrderedList" class="option-button">
+                <div class="fa-solid fa-list-ol"></div>
+              </button>
+
+            <button id="insertUnorderedList" class="option-button">
+                <i class="fa-solid fa-list"></i>             
+            </button>
+
+            <!-- Undo / Redo-->
+            <button id="uno" class="option-button">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+
+            <button id="redo" class="option-button">
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+
+            <!-- link -->
+            <button id="createLink" class="adv-option-button">
+                <i class="fa-solid fa-link"></i>
+            </button>
+
+            <button id="unlink" class="option-button">
+                <i class="fa-solid fa-unlink"></i>
+            </button>
+
+
+            <!-- Alignment -->
+            <button id="justifyLeft" class="option-button align">
+                <i class="fa-solid fa-align-left"></i>
+            </button>
+
+            <button id="justifyCenter" class="option-button align">
+                <i class="fa-solid fa-align-center"></i>
+            </button>
+
+            <button id="justifyRight" class="option-button align">
+                <i class="fa-solid fa-align-right"></i>
+            </button>
+
+            <button id="justifyFull" class="option-button align">
+                <i class="fa-solid fa-align-justify"></i>
+            </button>
+
+            <button id="indent" class="option-buttton spacing">
+                <i class="fa-solid fa-indent"></i>
+            </button>
+
+            <button id="outdent" class="option-button spacing">
+                <i class="fa-solid fa-outdent"></i>
+            </button>
+
+             <!-- 
+             HEadings -->
+            <select name="" id="formatBlock" class="adv-option-button">
+                <option value="H1">H1</option>
+                <option value="H2">H2</option>
+                <option value="H3">H3</option>
+                <option value="H4">H4</option>
+                <option value="H5">H5</option>
+                <option value="H6">H6</option>
+            </select>
+
+
+             <!-- Font -->
+            <select name="" id="fontName" class="adv-option-button"></select>
+
+            <select name="" id="fontSize" class="adv-option-button"></select>
+
+
+              <!-- Color -->
+            <div class="input-wrapper">
+                <input type="color" id="foreColor" class="adv-option-button">
+                <label for="foreColor">Font Color</label>
+            </div>
+
+            <div class="input-wrapper">
+                <input type="color" id="backColor" class="adv-option-button">
+                <label for="backColor">Highlight Color</label>
+            </div>
+        </div>
+
+
+        <div id="blog-info">
+            <label for="categoryDropdown">Select Blog Category:</label>
+            <select id="categoryDropdown">
+                <option value="Tech">Tech</option>
+                <option value="Health">Health</option>
+                <option value="Finance">Finance</option>
+                <option value="Nature">Nature</option>
+                <option value="Travel">Travel</option>
+                <option value="Food">Food</option>
+            </select>
+              
+            <label for="blog-title">Title:</label>
+            <input type="text" id="blog-title" placeholder="Enter Blog Title" required> 
+            <label for="blog-description">Description:</label>
+            <input type="text" id="blog-description" placeholder="Enter Blog Description" required>          
+            <label for="blogDetails">Blog Details:</label>
+        </div>
+
+        <div id="text-input" contenteditable="true" style="overflow-y: auto;">
+        </div>
+
+
+        <!-- Post Blog Button -->
+        <div class="post-blog-btn-div">
+            <button id="post-blog" class="post-blog-button">Post Blog</button>
+        </div>
+
+    </div>
+
+    <div id="notes-widget">
+        <div id="notes-header">
+          <span>Notes</span>
+          <button id="toggle-widget">-</button>
+        </div>
+        <div id="notes-body">
+          <div id="notes-list"></div>
+          <textarea id="note-input" placeholder="Write your note..."></textarea>
+          <button id="add-note-btn">Add Note</button>
+        </div>
+    </div>
+
+    <script src="editor.js"></script>
+</body>
+</html>

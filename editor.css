@@ -1,0 +1,415 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} */
+
+html {
+    height: 100%;
+}
+body {
+    background-color: #ddd;
+    height: 100%;
+    /* overflow: hidden; */
+}
+
+.editor-container{
+    max-width: 2000px;
+    background-color: #ffffff;
+    width: 70vw;
+    margin:5rem auto;
+    padding: 50px 30px;
+    border-radius: 10px;
+    box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+}
+
+
+.options{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+button{
+    height: 28px;
+    width: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: #ffffff;
+    outline: none;
+    color: #020929;
+}
+
+
+select{
+    padding: 7px;
+    border: 1px solid #020929;
+    border-radius: 3px;
+}
+
+.options label,
+.options select {
+    font-family: "Poppins", sans-serif;
+}
+
+.input-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input[type="color"]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 48px;
+    height: 28px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border-radius: 15px;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #020929;
+}
+input[type="color"]::-moz-color-swatch {
+    border-radius: 15px;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #020929;
+}
+
+#text-input{
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    /* width: 100%; */
+    height: 50vh;
+    padding: 20px;
+}
+
+.active {
+    background-color: #e0e9ff;
+}
+
+
+
+
+/* #text-input {
+    margin-bottom: 20px;
+} */
+
+#blog-info label {
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+#blog-info input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+
+
+.post-blog-btn-div {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content, if needed */
+    margin: auto; /* Center the div itself */
+    width: 100%; /* Full width of the parent container */
+}
+
+
+.post-blog-button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 20px; /* Padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 16px; /* Font size */
+    margin-top: 20px; /* Space above the button */
+    width: auto; /* Adjust width to fit content */
+    max-width: 200px; /* Optional: limit the button's width */
+    text-align: center; /* Center the text inside the button */
+    display: inline-flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    line-height: normal; /* Reset line-height to avoid vertical misalignment */
+}
+
+.post-blog-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+
+
+
+/* Theme Toggle Container */
+#toggle-theme-div{
+    margin-bottom:20px ;
+}
+
+#toggle-theme {
+    position: relative;
+    width: 60px;
+    height: 40px;
+    background-color: #fff; /* Dark toggle background for dark mode */
+    border-radius: 30px;
+    border: 2px solid #666; /* Subtle border */
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Active State (Dark Mode) */
+#toggle-theme.dark {
+    background-color: #222; /* Slightly darker background for active state */
+    border-color: #555; /* Adjust border for active state */
+}
+
+#toggle-theme.dark::after {
+    transform: translateX(30px); /* Move the circle to the right */
+    background-color: #ffeb3b; /* Yellow color for active theme (optional, can be white or other color) */
+}
+
+
+
+
+
+/* Floating Widget */
+#notes-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    min-height: 50px;
+    max-height: 200px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+}
+  
+/* Widget Header */
+#notes-header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+}
+  
+#notes-header span {
+    font-weight: bold;
+    font-size: 16px;
+}
+  
+#notes-header button {
+    background: none;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+  
+/* Notes Body */
+#notes-body {
+    padding: 10px;
+    max-height: 300px !important;
+    overflow-y: auto;
+    display: none; /* Hidden by default */
+}
+  
+#notes-list {
+    margin-bottom: 10px;
+}
+  
+.note {
+    background-color: #fff;
+    color: #090D1F;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    position: relative;
+}
+  
+.note button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+  
+#note-input {
+    width: 100%;
+    height: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+  
+#add-note-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+  
+#add-note-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+/* Header Section */
+header {
+    text-align: center;
+    padding: 20px 0;
+    margin: 0 10vw;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    padding: 10px 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 400;
+    display: inline-block;
+    line-height: 1.2;
+    border-bottom: 3px solid #ddd;
+}
+
+.menu li a:hover {
+    transform: scale(1.2);
+    color: var(--second-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: transform 0.2s,color 0.2s,text-shadow 0.2s ease-in-out;
+    border-bottom: 3px solid #020929;
+}
+
+
+
+/* Hamburger styling */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10;
+    gap: 5px;
+  }
+  
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333; /* Dark color for visibility on light background */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Animation for the open state */
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.open span:nth-child(2) {
+    opacity: 0; /* Middle line fades out */
+  }
+  
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+      flex-direction: column;
+      background-color: #fff; /* Dark background for the menu */
+      margin: 20px;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      width: 150px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .menu.active {
+      display: flex;
+    }
+  
+    .menu li a {
+      margin-bottom: 0.5rem;
+      color: #222; 
+      padding: 10px;
+    }
+  
+    .hamburger {
+      display: flex;
+    }
+
+    #notes-widget {
+        width: 300px;
+    }
+
+  }
+
+  @media (max-width:600px) {
+    #notes-widget{
+        width: 200px;
+    }
+  }
+  
