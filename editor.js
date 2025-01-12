@@ -403,3 +403,12 @@ hamburger.addEventListener('click', ()=>{
   menu.classList.toggle('active');
   hamburger.classList.toggle('open');
 })
+
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+    // Check if the click happened outside the menu and hamburger
+    if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+      menu.classList.remove('active');
+      hamburger.classList.remove('open');
+    }
+  });

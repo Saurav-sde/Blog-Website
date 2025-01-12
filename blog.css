@@ -195,11 +195,6 @@ nav {
     cursor: pointer;
 }
 
-/* 
- */
- /* .filter-item:hover{
-    background-color: #0056b3;
- } */
 
 .active-filter {
   background: var(--second-color);

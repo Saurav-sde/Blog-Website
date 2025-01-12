@@ -756,6 +756,15 @@ hamburger.addEventListener('click', ()=>{
 })
 
 
+// Close menu when clicking outside
+document.addEventListener('click', (event) => {
+  // Check if the click happened outside the menu and hamburger
+  if (!menu.contains(event.target) && !hamburger.contains(event.target)) {
+    menu.classList.remove('active');
+    hamburger.classList.remove('open');
+  }
+});
+
 
 
 // filter 

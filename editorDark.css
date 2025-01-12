@@ -207,7 +207,7 @@ input[type="color"]::-moz-color-swatch {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 400px;
+    width: 300px;
     min-height: 50px;
     max-height: 200px;
     background-color: #2d2d2d; /* Dark background */
@@ -425,13 +425,14 @@ header {
     }
 
     #notes-widget {
-        width: 300px;
+        width: 250px;
     }
   }
   
 
-  @media (max-width:600px) {
+  @media (max-width:650px) {
     #notes-widget{
         width: 200px;
+        bottom: 100px;
     }
   }

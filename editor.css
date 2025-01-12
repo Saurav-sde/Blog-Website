@@ -1,8 +1,8 @@
-/* *{
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-} */
+}
 
 html {
     height: 100%;
@@ -96,10 +96,6 @@ input[type="color"]::-moz-color-swatch {
 
 
 
-/* #text-input {
-    margin-bottom: 20px;
-} */
-
 #blog-info label {
     font-weight: bold;
     display: block;
@@ -188,7 +184,7 @@ input[type="color"]::-moz-color-swatch {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 400px;
+    width: 300px;
     min-height: 50px;
     max-height: 200px;
     background-color: #f9f9f9;
@@ -402,14 +398,15 @@ header {
     }
 
     #notes-widget {
-        width: 300px;
+        width: 250px;
     }
 
   }
 
-  @media (max-width:600px) {
-    #notes-widget{
+  @media (max-width:650px) {
+    #notes-widget{   
         width: 200px;
+        bottom: 100px;
     }
   }
   
