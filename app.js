@@ -65,112 +65,125 @@ let recentPosts = [
 ];
 
 
-// adding all the blog from local storage to recentposts array, as the local storage post is latest
+// Retrieve all blogs from local storage and add them to the recentPosts array
+// This ensures the most recent posts (from local storage) are displayed first
 const recenetBlogData = retrieveBlogData();
-recenetBlogData.forEach((post) =>{
-  recentPosts.push(post);
-})
+recenetBlogData.forEach((post) => {
+  recentPosts.push(post); // Add each blog post to the recentPosts array
+});
 
-// function to get latest blog
+// Function to get the latest blog posts
 function getLatestBlog() {
-  // Sort by postDate in descending order
+  // Sort the recentPosts array by postDate in descending order
   const sortedPosts = recentPosts.sort((a, b) => {
     const dateA = new Date(a.postDate);
     const dateB = new Date(b.postDate);
-    return dateB - dateA; // Latest posts first
+    return dateB - dateA; // Posts with the latest date appear first
   });
 
-  // Select the 5 most recent posts
+  // Select the 5 most recent blog posts
   const latestPosts = sortedPosts.slice(0, 5);
-  // creating that 5 latest blogs
-  latestPosts.forEach((recentPost)=>{
+
+  // Create and display a blog card for each of the 5 latest posts
+  latestPosts.forEach((recentPost) => {
     createRecentBlog(recentPost);
-  })
+  });
 }
 
-
-// function to create a recent blog card 
-const recentBlogContainer = document.getElementById('recentBlog');
-function createRecentBlog(blogPost){
+// Function to create a blog card for a single blog post
+const recentBlogContainer = document.getElementById('recentBlog'); // Get the container for recent blogs
+function createRecentBlog(blogPost) {
+  // Create the main blog card container
   const recentBlogCard = document.createElement('div');
-  recentBlogCard.setAttribute('class','recent-blog-card');
+  recentBlogCard.setAttribute('class', 'recent-blog-card');
 
+  // Create the image container for the blog
   const recentBlogImgContainer = document.createElement('div');
-  recentBlogImgContainer.setAttribute('class','recent-blog-img-container');
+  recentBlogImgContainer.setAttribute('class', 'recent-blog-img-container');
 
+  // Create and set the blog image
   const recentBlogImg = document.createElement('img');
-  recentBlogImg.setAttribute("class",'recent-blog-img');
-  recentBlogImg.setAttribute('src',`${blogPost.image}`);
-  recentBlogImgContainer.appendChild(recentBlogImg);
+  recentBlogImg.setAttribute('class', 'recent-blog-img');
+  recentBlogImg.setAttribute('src', `${blogPost.image}`);
+  recentBlogImgContainer.appendChild(recentBlogImg); // Append the image to its container
 
-  recentBlogCard.appendChild(recentBlogImgContainer);
+  recentBlogCard.appendChild(recentBlogImgContainer); // Add the image container to the blog card
 
-
+  // Create the content container for the blog card
   const recentBlogContentContainer = document.createElement('div');
-  recentBlogContentContainer.setAttribute('class','recent-blog-content-container');
+  recentBlogContentContainer.setAttribute('class', 'recent-blog-content-container');
 
+  // Create the title container and add the blog title
   const recentBlogTitleContainer = document.createElement('div');
-  recentBlogTitleContainer.setAttribute('class','recent-blog-title-container');
+  recentBlogTitleContainer.setAttribute('class', 'recent-blog-title-container');
 
-
-  const recentBlogTitle  = document.createElement('p');
-  recentBlogTitle.setAttribute('class','recent-blog-title');
-  recentBlogTitle.innerText = `${blogPost.title}`;
+  const recentBlogTitle = document.createElement('p');
+  recentBlogTitle.setAttribute('class', 'recent-blog-title');
+  recentBlogTitle.innerText = `${blogPost.title}`; // Set the blog title
   recentBlogTitleContainer.appendChild(recentBlogTitle);
 
+  // Add the current date to the title container
   const recentBlogDate = document.createElement('div');
-  recentBlogDate.setAttribute('class','recent-blog-date');
-  const currentDate = new Date;
-  recentBlogDate.innerText = `${currentDate.toDateString()}`;
+  recentBlogDate.setAttribute('class', 'recent-blog-date');
+  const currentDate = new Date(); // Get the current date
+  recentBlogDate.innerText = `${currentDate.toDateString()}`; // Format the date
   recentBlogTitleContainer.appendChild(recentBlogDate);
 
-  recentBlogContentContainer.appendChild(recentBlogTitleContainer);
+  recentBlogContentContainer.appendChild(recentBlogTitleContainer); // Add title container to content container
 
+  // Add the blog description
   const recentBlogDecription = document.createElement('p');
-  recentBlogDecription.setAttribute('class','recent-blog-desc');
+  recentBlogDecription.setAttribute('class', 'recent-blog-desc');
   recentBlogDecription.innerText = `${blogPost.description}`;
   recentBlogContentContainer.appendChild(recentBlogDecription);
 
+  // Create the author container and add author details
   const recentBlogAuthorContainer = document.createElement('div');
-  recentBlogAuthorContainer.setAttribute('class','recent-blog-author-container');
+  recentBlogAuthorContainer.setAttribute('class', 'recent-blog-author-container');
 
   const recentBlogAuthorImg = document.createElement('img');
-  recentBlogAuthorImg.setAttribute('class','recent-blog-author-img');
-  recentBlogAuthorImg.setAttribute('src',`${blogPost.profile.image}`);
+  recentBlogAuthorImg.setAttribute('class', 'recent-blog-author-img');
+  recentBlogAuthorImg.setAttribute('src', `${blogPost.profile.image}`); // Set author image
   recentBlogAuthorContainer.appendChild(recentBlogAuthorImg);
 
   const recentBlogAuthorName = document.createElement('p');
-  recentBlogAuthorName.setAttribute('class','recent-blog-author-name');
-  recentBlogAuthorName.innerText = `${blogPost.profile.name}`;
+  recentBlogAuthorName.setAttribute('class', 'recent-blog-author-name');
+  recentBlogAuthorName.innerText = `${blogPost.profile.name}`; // Set author name
   recentBlogAuthorContainer.appendChild(recentBlogAuthorName);
 
-  recentBlogContentContainer.appendChild(recentBlogAuthorContainer);
+  recentBlogContentContainer.appendChild(recentBlogAuthorContainer); // Add author container to content container
 
+  // Add additional details like category and a "Read More" link
   const recentBlogAddDetails = document.createElement('div');
-  recentBlogAddDetails.setAttribute('class','recent-blog-add-detail');
+  recentBlogAddDetails.setAttribute('class', 'recent-blog-add-detail');
 
   const recentBlogCategory = document.createElement('h2');
-  recentBlogCategory.setAttribute('class','recent-blog-category');
-  recentBlogCategory.innerText = `${blogPost.category}`;
+  recentBlogCategory.setAttribute('class', 'recent-blog-category');
+  recentBlogCategory.innerText = `${blogPost.category}`; // Set blog category
   recentBlogAddDetails.appendChild(recentBlogCategory);
 
   const readMore = document.createElement('p');
-  readMore.setAttribute('class','read-more');
-  readMore.innerText = 'Read More';
+  readMore.setAttribute('class', 'read-more');
+  readMore.innerText = 'Read More'; // Add "Read More" link text
   recentBlogAddDetails.appendChild(readMore);
 
-  recentBlogContentContainer.appendChild(recentBlogAddDetails);
+  recentBlogContentContainer.appendChild(recentBlogAddDetails); // Add additional details to content container
 
-  recentBlogCard.appendChild(recentBlogContentContainer);
-  recentBlogContainer.appendChild(recentBlogCard);
+  recentBlogCard.appendChild(recentBlogContentContainer); // Add content container to blog card
+
+  recentBlogContainer.appendChild(recentBlogCard); // Add blog card to the main container
 }
 
-//
-document.addEventListener('DOMContentLoaded',()=>{
-  getLatestBlog();
-})
+// Ensure the DOM is fully loaded before fetching and displaying the latest blogs
+document.addEventListener('DOMContentLoaded', () => {
+  getLatestBlog(); // Fetch and display the latest blogs
+});
 
 
+
+
+
+// Dummy Blogs 
 const blogPosts = [
     {
       id:1,
@@ -391,116 +404,122 @@ const blogPosts = [
 ];
 
 
+// Select the container where blog posts will be appended
 const post_container = document.querySelector('#post');
-// counter, if count > 9 hide the cards
+
+// Counter to keep track of the number of posts; if count > 9, hide extra posts
 let count = 0;
 
-
-// function to create a blog-post
+// Function to create a single blog post
 function createBlogPost(blogPost) {
-  // creating a parent container and setting attributes
+  // Create a parent container for the blog post and set its attributes
   const parentDiv = document.createElement('div');
-  parentDiv.setAttribute('class',`post-box ${blogPost.category}`);
-  parentDiv.setAttribute('data_id',`${blogPost.data_id}`);
+  parentDiv.setAttribute('class', `post-box ${blogPost.category}`);
+  parentDiv.setAttribute('data_id', `${blogPost.data_id}`);
 
-  // creating a blog image
+  // Create and append the blog post image
   const img = document.createElement('img');
-  img.setAttribute("src",`${blogPost.image}`);
-  img.setAttribute("class","post-img");
+  img.setAttribute("src", `${blogPost.image}`);
+  img.setAttribute("class", "post-img");
   parentDiv.appendChild(img);
 
-  // creating the blog category element
+  // Create and append the blog category element
   const h2 = document.createElement('h2');
-  h2.setAttribute('class','category');
+  h2.setAttribute('class', 'category');
   h2.innerText = `${blogPost.category}`;
-  colorOfCategory(h2);
+  colorOfCategory(h2); // Apply category-specific colors
   parentDiv.appendChild(h2);
 
-  // create blog title
+  // Create and append the blog title
   const a = document.createElement('a');
-  a.setAttribute('href',"#");
+  a.setAttribute('href', "#");
   a.setAttribute("class", "post-title");
   a.innerText = `${blogPost.title}`;
   parentDiv.appendChild(a);
 
-  // create blog date
+  // Create and append the blog date
   const span = document.createElement('span');
-  span.setAttribute("class","post-date");
+  span.setAttribute("class", "post-date");
   span.innerText = `${blogPost.postDate}`;
   parentDiv.appendChild(span);
 
-  // create the blog description
+  // Create and append the blog description
   const p = document.createElement('p');
-  p.setAttribute("class","post-description");
+  p.setAttribute("class", "post-description");
   p.innerText = `${blogPost.description}`;
   parentDiv.appendChild(p);
 
-
-  // create author container
+  // Create the container for author profile and delete button
   const profileDivContainer = document.createElement('div');
-  profileDivContainer.setAttribute('id','profile-div-container');
+  profileDivContainer.setAttribute('id', 'profile-div-container');
 
-
+  // Create the author profile section
   const profileDiv = document.createElement('div');
-  profileDiv.setAttribute("class","profile");
+  profileDiv.setAttribute("class", "profile");
 
-  // author image
+  // Add the author's image
   const profileImg = document.createElement('img');
-  profileImg.setAttribute('src',`${blogPost.profile.image}`);
-  profileImg.setAttribute('class','profile-img');
+  profileImg.setAttribute('src', `${blogPost.profile.image}`);
+  profileImg.setAttribute('class', 'profile-img');
   profileDiv.appendChild(profileImg);
 
-  // author name
+  // Add the author's name
   const profileName = document.createElement('span');
-  profileName.setAttribute('class','profile-name');
+  profileName.setAttribute('class', 'profile-name');
   profileName.innerText = `${blogPost.profile.name}`;
   profileDiv.appendChild(profileName);
 
   profileDivContainer.appendChild(profileDiv);
 
-
-  // create delete post container
+  // Create the delete post button container
   const deleteBtnDiv = document.createElement('div');
-  deleteBtnDiv.setAttribute('id','delete-btn-div');
+  deleteBtnDiv.setAttribute('id', 'delete-btn-div');
 
+  // Add the delete button
   const deletePostBtn = document.createElement('button');
-  deletePostBtn.setAttribute('id','delete-btn');
+  deletePostBtn.setAttribute('id', 'delete-btn');
   deletePostBtn.textContent = "Delete";
   deleteBtnDiv.appendChild(deletePostBtn);
 
   profileDivContainer.appendChild(deleteBtnDiv);
   parentDiv.appendChild(profileDivContainer);
 
-  // if no of blogs exceeds 9 , then hide the blogs
+  // Increment the post count and hide extra posts if count exceeds 9
   count++;
-  if(count > 9)
+  if (count > 9)
     parentDiv.classList.add('hidden');
 
+  // Append the parentDiv (blog post) to the container
   post_container.appendChild(parentDiv);
 }
 
-// Creating blogs from the local storage, the blog that user created
+// Retrieve and create blog posts stored in local storage
 const data = retrieveBlogData();
-data.forEach((post) =>{
+data.forEach((post) => {
   createBlogPost(post);
-})
+});
 
+// Function to retrieve user-created blog data from localStorage
+function retrieveBlogData() {
+  const blogs = JSON.parse(localStorage.getItem('blogs')) || []; // Parse blog data or return an empty array if none exists
+  return blogs; // Return the retrieved blogs
+}
 
-// creating Dummy Posts that will be shown after the user created post
-blogPosts.forEach((blogPost) =>{
-    createBlogPost(blogPost);
-})
-  
-// function for deciding the color of the blog category div based on the category of blog
-function colorOfCategory(element){
-  const category = element.innerText;
-  if(category === "Tech"){
+// Create and append dummy blog posts (static predefined posts)
+blogPosts.forEach((blogPost) => {
+  createBlogPost(blogPost);
+});
+
+// Function to set the color scheme for the blog category based on its value
+function colorOfCategory(element) {
+  const category = element.innerText; // Get the category text
+  if (category === "Tech") {
     element.style.color = "#6941c6";
     element.style.backgroundColor = "#f9f5ff";
-  } else if(category === "Finance"){
+  } else if (category === "Finance") {
     element.style.color = "#c11574";
     element.style.backgroundColor = "#fdf2fa";
-  } else if (category === "Travel"){
+  } else if (category === "Travel") {
     element.style.color = "#026AA2";
     element.style.backgroundColor = "#f0f9ff";
   } else if (category === "Health") {
@@ -510,233 +529,248 @@ function colorOfCategory(element){
     element.style.color = "#027a48";
     element.style.backgroundColor = "#ecfdf3";
   } else {
+    // Default category styling
     element.style.color = "#C4320A";
     element.style.backgroundColor = "#FFF6ED";
   }
 }
 
+
+
+
 // Add event listener to each delete button
-const deletePostBtns = document.querySelectorAll('#delete-btn');
+const deletePostBtns = document.querySelectorAll('#delete-btn'); // Select all delete buttons
 deletePostBtns.forEach((btn) => {
   btn.addEventListener('click', (event) => {
+    // Get the closest parent blog post container associated with the delete button
     const blogPostDiv = event.target.closest('.post-box');
+
+    // Get the blog post ID from the data attribute
     const blogPostId = blogPostDiv.getAttribute('data_id');
-    if(blogPostId === 'undefined') {
+
+    // Check if the blog post is a dummy blog card (without a valid ID)
+    if (blogPostId === 'undefined') {
       alert("SORRY, you can't delete the dummy blog cards!");
-      return;
+      return; // Exit the function to prevent deletion
     }
-    console.log(blogPostId);
-    
-    blogPostDiv.remove(); // Remove the blog post
 
-    count--; // decrease the count, as i have to show 9 cards
+    console.log(blogPostId); // Log the ID of the blog post being deleted
 
+    // Remove the blog post from the DOM
+    blogPostDiv.remove();
 
-    // update recentBlog posts
-    recentPosts = recentPosts.filter((recentPost) => String(recentPost.data_id) !== blogPostId);
+    // Decrease the count of visible blog posts since one is removed
+    count--;
 
-    // delete all the recent card and regenerate it
-    const recentCard = document.getElementsByClassName('recent-blog-card');  
+    // Update the recent blog posts by filtering out the deleted post
+    recentPosts = recentPosts.filter(
+      (recentPost) => String(recentPost.data_id) !== blogPostId
+    );
 
-    // Iterate over the recentCard elements in reverse order to avoid index shifting
+    // Delete all recent blog cards from the DOM to regenerate the updated list
+    const recentCard = document.getElementsByClassName('recent-blog-card');
     for (let i = recentCard.length - 1; i >= 0; i--) {
-      recentCard[i].remove();
+      recentCard[i].remove(); // Remove each recent blog card
     }
 
-    // regenerate the recent blog
+    // Regenerate the recent blog posts with the updated list
     getLatestBlog();
-        
+
+    // Delete the corresponding blog post from local storage
     deletePostFromLocalStorage(blogPostId);
   });
 });
 
-
-// delete post from the local storage
+// Function to delete a blog post from local storage
 function deletePostFromLocalStorage(postId) {
-  const savedBlogs = JSON.parse(localStorage.getItem('blogs')) || []; 
-  const updatedBlogs = savedBlogs.filter(blog => blog.data_id !== Number(postId)); // remove blog with matching id
+  // Retrieve the saved blogs from local storage (or initialize an empty array if none exist)
+  const savedBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
+
+  // Filter out the blog post with the matching ID
+  const updatedBlogs = savedBlogs.filter(
+    (blog) => blog.data_id !== Number(postId) // Convert postId to a number for comparison
+  );
+
+  // Save the updated list of blogs back to local storage
   localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
 }
 
 
-// filter
+
+
+// Wait for the DOM to fully load before running the script
 document.addEventListener("DOMContentLoaded", function () {
-    // Get all filter items and post boxes
-    const filterItems = document.querySelectorAll(".filter-item");
-    const postBoxes = document.querySelectorAll(".post-box");
-    const main = document.querySelector('main');
-    const showMoreBtn = document.createElement('button');
-    showMoreBtn.id = "show-more-btn";
-    showMoreBtn.textContent = "Show More";
+  // Select all filter items and post boxes
+  const filterItems = document.querySelectorAll(".filter-item");
+  const postBoxes = document.querySelectorAll(".post-box");
+  const main = document.querySelector('main');
 
-    const showMoreBtnDiv = document.createElement('div');
-    showMoreBtnDiv.id = "show-more-btn-div";
+  // Create the "Show More" button and its container
+  const showMoreBtn = document.createElement('button');
+  showMoreBtn.id = "show-more-btn"; // Assign an ID for styling and identification
+  showMoreBtn.textContent = "Show More"; // Set button text
 
-    showMoreBtnDiv.appendChild(showMoreBtn);
-    main.appendChild(showMoreBtnDiv);
+  const showMoreBtnDiv = document.createElement('div');
+  showMoreBtnDiv.id = "show-more-btn-div"; // Assign an ID for the button container
+  showMoreBtnDiv.appendChild(showMoreBtn); // Append the button to the container
+  main.appendChild(showMoreBtnDiv); // Add the container to the main element
 
-    let showAll = false;
-    const maxVisible = 9;
+  let showAll = false; // State to track whether all posts are displayed
+  const maxVisible = 9; // Maximum number of visible posts by default
 
-    function updatePostBoxVisibility(filterValue){
-      let visibleCount = 0;
-      // Show only matching post boxes, hide others
+  // Function to update the visibility of post boxes based on the filter
+  function updatePostBoxVisibility(filterValue) {
+      let visibleCount = 0; // Counter for visible posts
+
+      // Loop through each post box to determine visibility
       postBoxes.forEach(function (postBox) {
-        if(filterValue === 'all' || postBox.classList.contains(filterValue)){
-          if (visibleCount < maxVisible || showAll) {
-            postBox.style.display = "block";
+          if (filterValue === 'all' || postBox.classList.contains(filterValue)) {
+              // Show post if it matches the filter and within the visible limit
+              if (visibleCount < maxVisible || showAll) {
+                  postBox.style.display = "block";
+              } else {
+                  postBox.style.display = "none"; // Hide post if exceeding limit
+              }
+              visibleCount++; // Increment the visible counter
           } else {
-            postBox.style.display = "none";
+              // Hide post if it doesn't match the filter
+              postBox.style.display = 'none';
           }
-          visibleCount++;
-        }
-        else {
-          postBox.style.display = 'none';
-        }
-      })
+      });
 
-      // update btn text based on the state
+      // Update the "Show More" button's visibility and text
       showMoreBtn.style.display = visibleCount > maxVisible ? "inline-block" : "none";
       showMoreBtn.textContent = showAll ? "Show Less" : "Show More";
-    };
+  }
 
-    showMoreBtn.addEventListener('click',()=>{
-      showAll = !showAll;
-      const activeFilter = document.querySelector(".filter-item.active-filter");
-      const value = activeFilter? activeFilter.getAttribute("data-filter") : "all";
-      updatePostBoxVisibility(value);
-    })
+  // Add event listener for "Show More" button
+  showMoreBtn.addEventListener('click', () => {
+      showAll = !showAll; // Toggle the showAll state
+      const activeFilter = document.querySelector(".filter-item.active-filter"); // Get the currently active filter
+      const value = activeFilter ? activeFilter.getAttribute("data-filter") : "all"; // Get the filter value
+      updatePostBoxVisibility(value); // Update post visibility
+  });
 
-    // initialise with the "all" filter
-    filterItems[0].click();
+  // Initialize the view with the "all" filter
+  filterItems[0].click();
 
+  // Add click event listeners to each filter item
+  filterItems.forEach(function (filterItem) {
+      filterItem.addEventListener("click", function () {
+          const value = this.getAttribute("data-filter"); // Get the filter value of the clicked item
 
-    // Add click event listener to each filter item
-    filterItems.forEach(function (filterItem) {
-        filterItem.addEventListener("click", function () {
-            const value = this.getAttribute("data-filter");
+          showAll = false; // Reset the showAll state when switching filters
+          updatePostBoxVisibility(value); // Update post visibility based on the new filter
 
-            showAll = false; // reset to show More state when changing filters
-            updatePostBoxVisibility(value);
-
-            // update 'active-filter' class for the clicked filter item
-            filterItems.forEach(function (item) {
-                item.classList.remove("active-filter");
-            });
-            this.classList.add("active-filter");            
-        });
-    });
+          // Update the 'active-filter' class to highlight the clicked filter
+          filterItems.forEach(function (item) {
+              item.classList.remove("active-filter"); // Remove active class from all filters
+          });
+          this.classList.add("active-filter"); // Add active class to the clicked filter
+      });
+  });
 });
 
 
-// function to retrieve user created blog data
-function retrieveBlogData(){
-  const blogs = JSON.parse(localStorage.getItem('blogs')) || [];
-  return blogs;
-}
+// References to DOM elements used in the notes widget
+const widget = document.getElementById('notes-widget'); // Main notes widget container
+const notesHeader = document.getElementById('notes-header'); // Header of the widget (used for dragging)
+const toggleBtn = document.getElementById('toggle-widget'); // Button to toggle widget visibility
+const notesBody = document.getElementById('notes-body'); // Body of the widget containing notes
+const notesList = document.getElementById('notes-list'); // List where notes are displayed
+const noteInput = document.getElementById('note-input'); // Input field to enter new notes
+const addNoteBtn = document.getElementById('add-note-btn'); // Button to add a new note
 
-
-// notes feature
-const widget = document.getElementById('notes-widget');
-const notesHeader = document.getElementById('notes-header');
-const toggleBtn = document.getElementById('toggle-widget');
-const notesBody = document.getElementById('notes-body');
-const notesList = document.getElementById('notes-list');
-const noteInput = document.getElementById('note-input');
-const addNoteBtn = document.getElementById('add-note-btn');
-
-
-// toggle widget visibility
-toggleBtn.addEventListener('click',()=>{
-  if(notesBody.style.display === 'none' || !notesBody.style.display){
-    notesBody.style.display = 'block';
-    toggleBtn.textContent = '-';
-  }
-  else {
-    notesBody.style.display = 'none';
-    toggleBtn.textContent = '+';
+// Toggle widget visibility (show/hide the notes body)
+toggleBtn.addEventListener('click', () => {
+  if (notesBody.style.display === 'none' || !notesBody.style.display) {
+    notesBody.style.display = 'block'; // Show the notes body
+    toggleBtn.textContent = '-'; // Update button text to indicate collapse
+  } else {
+    notesBody.style.display = 'none'; // Hide the notes body
+    toggleBtn.textContent = '+'; // Update button text to indicate expand
   }
 });
 
-// Load notes from the local storage when page loads
-window.onload = function (){
-  const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
-  savedNotes.forEach(note => displayNote(note));
+// Load saved notes from local storage when the page loads
+window.onload = function () {
+  const savedNotes = JSON.parse(localStorage.getItem('notes')) || []; // Retrieve saved notes or initialize as empty array
+  savedNotes.forEach(note => displayNote(note)); // Display each saved note in the widget
 };
 
-
-// Add a new note 
-addNoteBtn.addEventListener('click',() =>{
-  const noteText = noteInput.value.trim();
-  if(noteText === ''){
-    alert('Note cannot be empty!');
+// Add a new note when the "Add Note" button is clicked
+addNoteBtn.addEventListener('click', () => {
+  const noteText = noteInput.value.trim(); // Get and trim the input value
+  if (noteText === '') { // Check if the input is empty
+    alert('Note cannot be empty!'); // Alert the user if input is empty
     return;
   }
-  displayNote(noteText);
-  saveNoteToLocalStorage(noteText);
-  noteInput.value = ''; // after saving clear the input field
+  displayNote(noteText); // Display the new note in the list
+  saveNoteToLocalStorage(noteText); // Save the note to local storage
+  noteInput.value = ''; // Clear the input field after saving
 });
 
-
-// Display a note
+// Display a single note in the notes list
 function displayNote(noteText) {
-  const noteDiv = document.createElement('div');
-  noteDiv.classList.add('note');
-  noteDiv.textContent = noteText;
+  const noteDiv = document.createElement('div'); // Create a div for the note
+  noteDiv.classList.add('note'); // Add the 'note' class for styling
+  noteDiv.textContent = noteText; // Set the text of the note
 
-  // Add Delete button
+  // Create a delete button for the note
   const deleteNote = document.createElement('button');
-  deleteNote.textContent = 'X';
-  deleteNote.onclick = () =>{
-    notesList.removeChild(noteDiv);
-    deleteNoteFromLocalStorage(noteText);
-  } ;
+  deleteNote.textContent = 'X'; // Set delete button text
+  deleteNote.onclick = () => { // Add functionality to delete the note
+    notesList.removeChild(noteDiv); // Remove the note from the DOM
+    deleteNoteFromLocalStorage(noteText); // Remove the note from local storage
+  };
 
-  noteDiv.appendChild(deleteNote);
-  notesList.appendChild(noteDiv);
+  noteDiv.appendChild(deleteNote); // Append the delete button to the note
+  notesList.appendChild(noteDiv); // Add the note to the notes list
 }
 
-
-// save note to local storage
+// Save a note to local storage
 function saveNoteToLocalStorage(noteText) {
-  const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
-  savedNotes.push(noteText);
-  localStorage.setItem('notes', JSON.stringify(savedNotes));
+  const savedNotes = JSON.parse(localStorage.getItem('notes')) || []; // Retrieve existing notes or initialize an empty array
+  savedNotes.push(noteText); // Add the new note to the array
+  localStorage.setItem('notes', JSON.stringify(savedNotes)); // Save the updated array to local storage
 }
 
-
-// Delete note from local storage
+// Delete a note from local storage
 function deleteNoteFromLocalStorage(noteText) {
-  const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
-  const updatedNotes = savedNotes.filter(note => note !== noteText);
-  localStorage.setItem('notes', JSON.stringify(updatedNotes));
-  alert("Notes Deleted Successfully!!!");
+  const savedNotes = JSON.parse(localStorage.getItem('notes')) || []; // Retrieve existing notes
+  const updatedNotes = savedNotes.filter(note => note !== noteText); // Filter out the note to delete
+  localStorage.setItem('notes', JSON.stringify(updatedNotes)); // Save the updated notes array
+  alert("Notes Deleted Successfully!!!"); // Notify the user of successful deletion
 }
 
-// make widget draggable
-let isDragging = false;
-let offsetX, offsetY;
+// Enable dragging of the notes widget
+let isDragging = false; // State to track if the widget is being dragged
+let offsetX, offsetY; // Variables to store the mouse offset from the widget's position
 
-notesHeader.addEventListener('mousedown', (event) =>{
-  isDragging = true;
-  offsetX = event.clientX - widget.offsetLeft;
-  offsetY = event.clientY - widget.offsetTop;
+// Start dragging when the mouse is pressed on the widget's header
+notesHeader.addEventListener('mousedown', (event) => {
+  isDragging = true; // Set dragging state to true
+  offsetX = event.clientX - widget.offsetLeft; // Calculate horizontal offset
+  offsetY = event.clientY - widget.offsetTop; // Calculate vertical offset
 });
 
-
+// Move the widget as the mouse moves during dragging
 document.addEventListener('mousemove', (e) => {
   if (isDragging) {
-    widget.style.left = `${e.clientX - offsetX}px`;
-    widget.style.top = `${e.clientY - offsetY}px`;
+    widget.style.left = `${e.clientX - offsetX}px`; // Update widget's left position
+    widget.style.top = `${e.clientY - offsetY}px`; // Update widget's top position
   }
 });
 
+// Stop dragging when the mouse button is released
 document.addEventListener('mouseup', () => {
-  isDragging = false;
-});                         
+  isDragging = false; // Set dragging state to false
+});
 
 
 
+
+// on click thi btn you will go to text editor for creating a blog
 const startYourBlogBtn = document.getElementById("startYourBlogBtn");
 startYourBlogBtn.addEventListener('click',()=>{
   window.location.href = "editor.html";
@@ -746,7 +780,7 @@ startYourBlogBtn.addEventListener('click',()=>{
 
 
 
-// to handle hamburger
+// to handle hamburger (For mobile Devices)
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
 
@@ -767,7 +801,7 @@ document.addEventListener('click', (event) => {
 
 
 
-// filter 
+// filter button when screen size is smaller
 // Select Elements
 const filterIcon = document.getElementById('filterIcon');
 const filterMenu = document.getElementById('filterMenu');
