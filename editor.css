@@ -13,6 +13,94 @@ body {
     /* overflow: hidden; */
 }
 
+
+/* Header Section */
+header {
+    text-align: center;
+    padding: 20px 0;
+    margin: 0 10vw;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1rem;
+    padding: 10px 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 400;
+    display: inline-block;
+    line-height: 1.2;
+    border-bottom: 3px solid #ddd;
+}
+
+.menu li a:hover {
+    transform: scale(1.2);
+    color: var(--second-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: transform 0.2s,color 0.2s,text-shadow 0.2s ease-in-out;
+    border-bottom: 3px solid #020929;
+}
+
+
+
+/* Hamburger styling */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10;
+    gap: 5px;
+  }
+  
+  .hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333; /* Dark color for visibility on light background */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Animation for the open state */
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  
+  .hamburger.open span:nth-child(2) {
+    opacity: 0; /* Middle line fades out */
+  }
+  
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+
 .editor-container{
     max-width: 2000px;
     background-color: #ffffff;
@@ -122,29 +210,26 @@ input[type="color"]::-moz-color-swatch {
 
 
 .post-blog-button {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    padding: 20px; /* Padding */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor */
-    font-size: 16px; /* Font size */
-    margin-top: 20px; /* Space above the button */
-    width: auto; /* Adjust width to fit content */
-    max-width: 200px; /* Optional: limit the button's width */
-    text-align: center; /* Center the text inside the button */
-    display: inline-flex; /* Use flexbox for centering content */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    line-height: normal; /* Reset line-height to avoid vertical misalignment */
+    background-color: #4CAF50;
+    color: white; 
+    padding: 20px;
+    border: none; 
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    width: auto; 
+    max-width: 200px;
+    text-align: center; 
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: normal;
 }
 
 .post-blog-button:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #45a049;
 }
-
-
-
 
 
 /* Theme Toggle Container */
@@ -171,11 +256,9 @@ input[type="color"]::-moz-color-swatch {
 }
 
 #toggle-theme.dark::after {
-    transform: translateX(30px); /* Move the circle to the right */
-    background-color: #ffeb3b; /* Yellow color for active theme (optional, can be white or other color) */
+    transform: translateX(30px);
+    background-color: #ffeb3b;
 }
-
-
 
 
 
@@ -283,94 +366,9 @@ input[type="color"]::-moz-color-swatch {
 
 
 
-/* Header Section */
-header {
-    text-align: center;
-    padding: 20px 0;
-    margin: 0 10vw;
-}
-
-/* Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-.menu li a {
-    text-decoration: none;
-    color: #666;
-    font-size: 1rem;
-    padding: 10px 12px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    margin-top: 20px;
-    font-weight: 400;
-    display: inline-block;
-    line-height: 1.2;
-    border-bottom: 3px solid #ddd;
-}
-
-.menu li a:hover {
-    transform: scale(1.2);
-    color: var(--second-color);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-    transition: transform 0.2s,color 0.2s,text-shadow 0.2s ease-in-out;
-    border-bottom: 3px solid #020929;
-}
-
-
-
-/* Hamburger styling */
-.hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    z-index: 10;
-    gap: 5px;
-  }
   
-  .hamburger span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #333; /* Dark color for visibility on light background */
-    border-radius: 2px;
-    transition: all 0.3s ease;
-  }
-  
-  /* Animation for the open state */
-  .hamburger.open span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-  }
-  
-  .hamburger.open span:nth-child(2) {
-    opacity: 0; /* Middle line fades out */
-  }
-  
-  .hamburger.open span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-  }
-  
-  /* Mobile Styles */
-  @media (max-width: 768px) {
+/* Mobile Styles */
+@media (max-width: 768px) {
     .menu {
       display: none;
       flex-direction: column;
@@ -401,12 +399,12 @@ header {
         width: 250px;
     }
 
-  }
+}
 
-  @media (max-width:650px) {
+@media (max-width:650px) {
     #notes-widget{   
         width: 200px;
         bottom: 100px;
     }
-  }
+}
   

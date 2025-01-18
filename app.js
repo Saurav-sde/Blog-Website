@@ -1,5 +1,4 @@
 
-
 // Dummy Posts for Recent Blogs
 let recentPosts = [
   {
@@ -72,6 +71,12 @@ recenetBlogData.forEach((post) => {
   recentPosts.push(post); // Add each blog post to the recentPosts array
 });
 
+// Function to retrieve user-created blog data from localStorage
+function retrieveBlogData() {
+  const blogs = JSON.parse(localStorage.getItem('blogs')) || []; // Parse blog data or return an empty array if none exists
+  return blogs; // Return the retrieved blogs
+}
+
 // Function to get the latest blog posts
 function getLatestBlog() {
   // Sort the recentPosts array by postDate in descending order
@@ -90,7 +95,7 @@ function getLatestBlog() {
   });
 }
 
-// Function to create a blog card for a single blog post
+// Function to create a blog card for a single recent blog post
 const recentBlogContainer = document.getElementById('recentBlog'); // Get the container for recent blogs
 function createRecentBlog(blogPost) {
   // Create the main blog card container
@@ -189,7 +194,7 @@ const blogPosts = [
       id:1,
       image: "images/tech1.jpg",
       category: "Tech",
-      title: "Top 5 Tech Trends to Watch In 2025",
+      title: "Top 5 Tech Trends to Watch",
       postDate: "January 4, 2025",
       description: "Discover the top 5 tech trends to watch in 2025, including breakthroughs in Artificial Intelligence (AI), Quantum Computing, Extended Reality (XR), 5G connectivity, and sustainable tech innovations. This blog explores how these cutting-edge technologies are set to revolutionize industries like healthcare, gaming, smart cities, and more, offering a glimpse into the future of technology and its impact on our daily lives. Stay ahead of the curve by understanding the transformative changes coming in the tech world!",
       profile: {
@@ -225,7 +230,7 @@ const blogPosts = [
       id:4,
       image: "images/img4.svg",
       category: "Travel",
-      title: "Top Destinations to Visit in 2025",
+      title: "Top Destinations to Travel in 2025",
       postDate: "January 1, 2025",
       description: "Planning your next adventure? Discover the top travel destinations to visit in 2025! This blog highlights the most exciting and must-see places around the world, from serene beaches to bustling cities and off-the-beaten-path gems. Whether you're a culture seeker, nature lover, or history enthusiast, these destinations promise unforgettable experiences and breathtaking sights. Get inspired and start planning your 2025 travels with our carefully curated list of the best places to visit this year.",
       profile: {
@@ -485,25 +490,24 @@ function createBlogPost(blogPost) {
   parentDiv.appendChild(profileDivContainer);
 
   // Increment the post count and hide extra posts if count exceeds 9
-  count++;
-  if (count > 9)
+  if (count > 8)
     parentDiv.classList.add('hidden');
+  else
+    count++;
 
   // Append the parentDiv (blog post) to the container
   post_container.appendChild(parentDiv);
 }
 
+
+let noOfUserPosts = 0;
 // Retrieve and create blog posts stored in local storage
 const data = retrieveBlogData();
 data.forEach((post) => {
+  noOfUserPosts++; // counting the user created blogs 
   createBlogPost(post);
 });
 
-// Function to retrieve user-created blog data from localStorage
-function retrieveBlogData() {
-  const blogs = JSON.parse(localStorage.getItem('blogs')) || []; // Parse blog data or return an empty array if none exists
-  return blogs; // Return the retrieved blogs
-}
 
 // Create and append dummy blog posts (static predefined posts)
 blogPosts.forEach((blogPost) => {
@@ -554,13 +558,15 @@ deletePostBtns.forEach((btn) => {
       return; // Exit the function to prevent deletion
     }
 
-    console.log(blogPostId); // Log the ID of the blog post being deleted
-
     // Remove the blog post from the DOM
     blogPostDiv.remove();
 
     // Decrease the count of visible blog posts since one is removed
     count--;
+    if(count < 9){
+      createBlogPost(blogPosts[9-noOfUserPosts]); // we have to reinsert the card that ws removed when user created the post;
+      noOfUserPosts--; //decrease the count of user created post, as it has been deleted by the user
+    }
 
     // Update the recent blog posts by filtering out the deleted post
     recentPosts = recentPosts.filter(
@@ -578,6 +584,8 @@ deletePostBtns.forEach((btn) => {
 
     // Delete the corresponding blog post from local storage
     deletePostFromLocalStorage(blogPostId);
+
+    alert("Post Deleted Successfully!!!");
   });
 });
 
@@ -768,16 +776,11 @@ document.addEventListener('mouseup', () => {
 });
 
 
-
-
-// on click thi btn you will go to text editor for creating a blog
+// on click this btn you will go to text editor for creating a blog
 const startYourBlogBtn = document.getElementById("startYourBlogBtn");
 startYourBlogBtn.addEventListener('click',()=>{
   window.location.href = "editor.html";
 })
-
-
-
 
 
 // to handle hamburger (For mobile Devices)
@@ -800,7 +803,6 @@ document.addEventListener('click', (event) => {
 });
 
 
-
 // filter button when screen size is smaller
 // Select Elements
 const filterIcon = document.getElementById('filterIcon');
@@ -810,7 +812,6 @@ const filterItems = document.querySelectorAll('.filter-item');
 
 // to check is it smaller screen or not,
 const isMobileScreen = () => window.innerWidth <= 670;
-
 
 // Show Filter Menu on Hamburger Click
 filterIcon.addEventListener('click', () => {
@@ -832,7 +833,6 @@ filterItems.forEach(item => {
         filterIcon.style.display = 'block'; // show the filter btn again. when the screen size is less than 670px
   });
 });
-
 
 // Handle Responsive Behavior on Window Resize
 window.addEventListener('resize', () => {
